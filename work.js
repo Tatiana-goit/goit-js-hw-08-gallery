@@ -7,7 +7,7 @@ const modalOverlay = document.querySelector('.lightbox__overlay')
 const modalImage = document.querySelector('.lightbox__image');
 const modalBtnClose = document.querySelector('button[data-action="close-lightbox"]');
 
-let currentIndex = null;
+let currentIndex = 0;
 
 const markup = createGallery();
 
@@ -51,23 +51,32 @@ function onImageClick(evt) {
         return
     }
 
-    markup.forEach((element, ind) => {
-        if (element.includes(evt.target.src)) {
-            currentIndex = ind;
-        return;
-        }
-    });
+
+    currentIndex =gallery.findIndex(el => el.preview===evt.target.src)
+  
+    // markup.forEach((element, ind) => {
+    //     if (element.includes(evt.target.src)) {
+    //         currentIndex = ind;
+    //     return;
+    //     }
+    // });
+ 
     
     modal.classList.add('is-open');
-    modalImage.src = evt.target.dataset.source;
-    modalImage.alt = evt.target.alt;
+    changeAttribute (evt.target.dataset.source,evt.target.alt)
 }
+
 
 function closeModal() {
     modal.classList.remove('is-open');
-    modalImage.src = "";
-    modalImage.alt = "";
+    changeAttribute ("","")
 }
+
+function changeAttribute(src, alt) {
+    modalImage.src = src;
+    modalImage.alt = alt;
+}
+
 
 function closeModalByEsc(evt) {
     if ((evt.code === "Escape") & (modal.classList.contains('is-open'))) {
@@ -80,19 +89,23 @@ function changeImage(evt) {
     
     if (evt.code === 'ArrowRight') {
         if (currentIndex !== length) {
-             modalImage.src = gallery[currentIndex += 1].original;
+            modalImage.src = gallery[currentIndex += 1].original;
+            modalImage.alt = gallery[currentIndex].description;
         } else {
             currentIndex = 0;
             modalImage.src = gallery[currentIndex].original;
+            modalImage.alt = gallery[currentIndex].description;
         }
     }
 
     if (evt.code === 'ArrowLeft') {
         if (currentIndex !== 0) {
-             modalImage.src = gallery[currentIndex -= 1].original;
+            modalImage.src = gallery[currentIndex -= 1].original;
+            modalImage.alt = gallery[currentIndex].description;
         } else {
             currentIndex = length;
             modalImage.src = gallery[currentIndex].original;
+            modalImage.alt = gallery[currentIndex].description;
         }
     }
 }
