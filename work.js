@@ -66,7 +66,6 @@ function onImageClick(evt) {
     changeAttribute (evt.target.dataset.source,evt.target.alt)
 }
 
-
 function closeModal() {
     modal.classList.remove('is-open');
     changeAttribute ("","")
@@ -77,7 +76,6 @@ function changeAttribute(src, alt) {
     modalImage.alt = alt;
 }
 
-
 function closeModalByEsc(evt) {
     if ((evt.code === "Escape") & (modal.classList.contains('is-open'))) {
         closeModal();
@@ -86,26 +84,26 @@ function closeModalByEsc(evt) {
 
 function changeImage(evt) {
     const length = markup.length-1;
-    
+    const nextSrc = gallery[currentIndex].original;
+    const alt = gallery[currentIndex].description;
+     
     if (evt.code === 'ArrowRight') {
         if (currentIndex !== length) {
-            modalImage.src = gallery[currentIndex += 1].original;
-            modalImage.alt = gallery[currentIndex].description;
-        } else {
+            currentIndex += 1;
+            changeAttribute(nextSrc, alt)
+         } else {
             currentIndex = 0;
-            modalImage.src = gallery[currentIndex].original;
-            modalImage.alt = gallery[currentIndex].description;
+            changeAttribute(nextSrc, alt);
         }
     }
 
     if (evt.code === 'ArrowLeft') {
         if (currentIndex !== 0) {
-            modalImage.src = gallery[currentIndex -= 1].original;
-            modalImage.alt = gallery[currentIndex].description;
-        } else {
+            currentIndex -= 1;
+            changeAttribute(nextSrc, alt);
+         } else {
             currentIndex = length;
-            modalImage.src = gallery[currentIndex].original;
-            modalImage.alt = gallery[currentIndex].description;
-        }
+            changeAttribute(nextSrc, alt);
+         }
     }
 }

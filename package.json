@@ -4,7 +4,7 @@
   "description": "",
   "main": "gallery-items.js",
   "scripts": {
-    "test": u"echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
