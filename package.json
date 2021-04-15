@@ -1,0 +1,19 @@
+{
+  "name": "goit-js-hw-08-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gallery-items.js",
+  "scripts": {
+    "test": u"echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tatiana-goit/goit-js-hw-08-gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tatiana-goit/goit-js-hw-08-gallery/issues"
+  },
+  "homepage": "https://github.com/Tatiana-goit/goit-js-hw-08-gallery#readme"
+}
