@@ -71,39 +71,43 @@ function closeModal() {
     changeAttribute ("","")
 }
 
-function changeAttribute(src, alt) {
-    modalImage.src = src;
-    modalImage.alt = alt;
-}
-
 function closeModalByEsc(evt) {
     if ((evt.code === "Escape") & (modal.classList.contains('is-open'))) {
         closeModal();
     }
 }
 
-function changeImage(evt) {
-    const length = markup.length-1;
-    const nextSrc = gallery[currentIndex].original;
+function changeAttribute(src, alt) {
+    modalImage.src = src;
+    modalImage.alt = alt;
+}
+
+function updateSlider(index) {
+    const src = gallery[currentIndex].original;
     const alt = gallery[currentIndex].description;
-     
+    changeAttribute(src, alt);
+}
+
+function changeImage(evt) {
+    const length = markup.length - 1;
+         
     if (evt.code === 'ArrowRight') {
         if (currentIndex !== length) {
             currentIndex += 1;
-            changeAttribute(nextSrc, alt)
+            updateSlider(currentIndex);
          } else {
             currentIndex = 0;
-            changeAttribute(nextSrc, alt);
+            updateSlider(currentIndex);
         }
     }
 
     if (evt.code === 'ArrowLeft') {
         if (currentIndex !== 0) {
             currentIndex -= 1;
-            changeAttribute(nextSrc, alt);
+            updateSlider(currentIndex);
          } else {
             currentIndex = length;
-            changeAttribute(nextSrc, alt);
+            updateSlider(currentIndex);
          }
     }
 }
